@@ -7,17 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="batch-jobs" />
         <module name="city-service" />
         <module name="naming-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="batch-jobs" target="17" />
       <module name="city-service" target="17" />
       <module name="naming-server" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="batch-jobs" options="-parameters" />
       <module name="city-service" options="-parameters" />
       <module name="naming-server" options="-parameters" />
     </option>
