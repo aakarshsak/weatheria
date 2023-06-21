@@ -38,7 +38,7 @@ public class BatchConfig {
                 .name("cityProcessor")
                 .resource(new ClassPathResource("cities.csv"))
                 .delimited()
-                .names(new String[]{"id", "cityName"})
+                .names(new String[]{"id", "cityName", "stateName"})
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<>(){{
                         setTargetType(City.class);
                 }})
@@ -55,7 +55,7 @@ public class BatchConfig {
     public JdbcBatchItemWriter<City> jdbcWriter(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<City>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO cities (id, city_name) VALUES (:id, :cityName)")
+                .sql("INSERT INTO cities (id, city_name, state_name) VALUES (:id, :cityName, :stateName)")
                 .dataSource(dataSource)
                 .build();
     }

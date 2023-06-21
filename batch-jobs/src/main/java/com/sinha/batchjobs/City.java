@@ -19,7 +19,5 @@ public class City {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String cityName;
-    public City(String cityName) {
-        this.cityName = cityName;
-    }
+    private String stateName;
 }
