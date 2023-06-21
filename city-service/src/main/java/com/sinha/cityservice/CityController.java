@@ -16,21 +16,26 @@ public class CityController {
 
     Logger logger = LoggerFactory.getLogger(CityController.class);
 
-    private CityRepository cityRepository;
+    private CityService cityService;
 
     @Autowired
-    public CityController(CityRepository cityRepository) {
-        this.cityRepository = cityRepository;
+    public CityController(CityService cityService) {
+        this.cityService = cityService;
     }
 
     @GetMapping("")
     public ResponseEntity<List<City>> getCities() {
-        return new ResponseEntity<>(cityRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(cityService.getCities(), HttpStatus.OK);
+    }
+
+    @GetMapping("/names")
+    public ResponseEntity<List<String>> getCitiesNames() {
+        return new ResponseEntity<>(cityService.getCityNames(), HttpStatus.OK);
     }
 
     @PostMapping("")
     public ResponseEntity<City> addCity(@RequestBody City city) {
-        cityRepository.save(city);
+        cityService.addCity(city);
         return new ResponseEntity<>(city, HttpStatus.CREATED);
     }
 }
